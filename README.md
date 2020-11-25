@@ -1,2 +1,27 @@
 # syn_commands
 a collection of admin commands to use when vorp admin is broken
+
+animations: 
+/Stinky
+/tip 
+/slit
+/SlwClp
+/Smh
+/Spit
+/no
+/yes
+/wave
+/bird
+
+Delete vehicle: (anyone can use)
+/dv
+
+admin commands:
+/hp id (heal players) uses srp metabolism to fill food and water
+/res id (revive player)
+/givecash id amount 
+/givegold id amount
+/giveitem id item amount
+/takecash id amount
+/takegold id amount
+/tpm (teleport to waypoint)
