@@ -1,4 +1,5 @@
 # syn_commands
+For more scripts join https://discord.gg/sjSfqxjpUd
 a collection of admin commands to use when vorp admin is broken
 
 animations: 
