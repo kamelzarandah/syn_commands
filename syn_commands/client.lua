@@ -53,8 +53,18 @@ RegisterCommand("dv", function()--Delete Vehicle
     end
 end)
 
-RegisterNetEvent('syn_commands:heal')
-AddEventHandler('syn_commands:heal', function(id)
+RegisterCommand("dh", function()--Delete Vehicle
+    local playerPed = PlayerPedId()
+    local mount   = GetMount(PlayerPedId())
+
+    if IsPedOnMount(playerPed) then
+        DeleteEntity(mount)
+    end
+
+end)
+
+RegisterNetEvent('syn:heal')
+AddEventHandler('syn:heal', function(id)
     local closestPlayerPed = GetPlayerPed(id)
     print(closestPlayerPed)
     local health = GetAttributeCoreValue(closestPlayerPed, 0)
@@ -70,8 +80,20 @@ AddEventHandler('syn_commands:heal', function(id)
     SetEntityHealth(closestPlayerPed, newHealth2)
 end)
 
-RegisterNetEvent('syn_commands:tpm')
-AddEventHandler('syn_commands:tpm', function(source)
+RegisterNetEvent('syn:godmode')
+AddEventHandler('syn:godmode', function(id)
+    god = GetPlayerInvincible(id)
+    if god == false then 
+        SetPlayerInvincible(id, true)
+    else
+        SetPlayerInvincible(id, false)
+    end
+    god2 = GetPlayerInvincible(id)
+    print(god2)
+end)
+
+RegisterNetEvent('syn:tpm')
+AddEventHandler('syn:tpm', function(source)
     local playerped = GetPlayerPed(source)
     local waypt = GetWaypointCoords()
      for height = 1, 1000 do
@@ -83,4 +105,28 @@ AddEventHandler('syn_commands:tpm', function(source)
         end
         Citizen.Wait(5)
     end 
+end)
+
+RegisterCommand("bandana", function(source, args)
+    if puesta then 
+        Citizen.InvokeNative(0xAE72E7DF013AAA61,PlayerPedId(),GetHashKey("KIT_BANDANA"), GetHashKey("BANDANA_OFF_RIGHT_HAND"), 1, 0, -1082130432)
+        Wait(700)
+        -- Quitar bandana
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C,PlayerPedId(),-972364774)
+        Citizen.InvokeNative(0xCC8CA3E88256E58F,PlayerPedId(),0,1,1,1,false)
+        puesta = false
+    else
+        Citizen.InvokeNative(0xAE72E7DF013AAA61,PlayerPedId(),GetHashKey("KIT_BANDANA"), GetHashKey("BANDANA_ON_RIGHT_HAND"), 1, 0, -1082130432)
+        Wait(700)
+        -- Poner bandana
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C,PlayerPedId(),-1100875244)
+        Citizen.InvokeNative(0xCC8CA3E88256E58F,PlayerPedId(),0,1,1,1,false)
+        puesta = true
+    end
+end)
+
+RegisterNetEvent('syn:showjob')
+AddEventHandler('syn:showjob', function(job)
+    TriggerEvent("vorp:TipBottom", 'your job title is : '..job, 4000)
+
 end)
