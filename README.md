@@ -13,6 +13,8 @@ animations:
 /yes
 /wave
 /bird
+/bandana (toggle bandana on and off)
+/showjob (shows player current job)
 
 Delete vehicle: (anyone can use)
 /dv
@@ -26,3 +28,5 @@ admin commands:
 /takecash id amount
 /takegold id amount
 /tpm (teleport to waypoint)
+/god toggle godmode on or off 
+/setjob id jobtitle
