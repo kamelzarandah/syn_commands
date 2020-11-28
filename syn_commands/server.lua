@@ -14,7 +14,20 @@ RegisterCommand("hp", function(source, args)
   local group = User.getGroup -- Return user group (not character group)
   local id =  args[1]
     if group == "admin" then
-      TriggerClientEvent('syn_commands:heal', id)
+      TriggerClientEvent('syn:heal', id)
+    else return false
+    end
+   end
+  end)
+
+  RegisterCommand("god", function(source, args)
+    
+    if args ~= nil then
+  local User = VorpCore.getUser(source) -- Return User with functions and all characters
+  local group = User.getGroup -- Return user group (not character group)
+  local id =  args[1]
+    if group == "admin" then
+      TriggerClientEvent('syn:godmode', id)
     else return false
     end
    end
@@ -128,7 +141,29 @@ RegisterCommand("hp", function(source, args)
   local User = VorpCore.getUser(source) -- Return User with functions and all characters
   local group = User.getGroup -- Return user group (not character group)
    if group == "admin" then
-      TriggerClientEvent('syn_commands:tpm', source)
+      TriggerClientEvent('syn:tpm', source)
     else return false
    end
   end)
+
+  RegisterCommand("setjob", function(source, args)
+    
+    if args ~= nil then
+  local User = VorpCore.getUser(source) 
+  local group = User.getGroup 
+  local id =  args[1]
+  local job =  args[2]
+  local Character = VorpCore.getUser(id).getUsedCharacter
+    if group == "admin" then
+      Character.setJob(job)
+    else return false
+    end
+   end
+  end)
+
+  RegisterCommand("showjob", function(source, args)
+    local Character = VorpCore.getUser(source).getUsedCharacter
+    local job = Character.job
+        TriggerClientEvent('syn:showjob', source, job)
+
+    end)
